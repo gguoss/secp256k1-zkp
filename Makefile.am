@@ -87,13 +87,22 @@ bench_internal_LDADD = $(SECP_LIBS) $(COMMON_LIB)
 bench_internal_CPPFLAGS = -DSECP256K1_BUILD $(SECP_INCLUDES)
 endif
 
+
+if USE_ZKP
+noinst_PROGRAMS += zkp
+zkp_SOURCES = src/zkp.c
+zkp_CPPFLAGS = -DSECP256K1_BUILD -DVERIFY -I$(top_srcdir)/src -I$(top_srcdir)/include $(SECP_INCLUDES) $(SECP_TEST_INCLUDES)
+zkp_LDADD = $(SECP_LIBS) $(SECP_TEST_LIBS) $(COMMON_LIB)
+zkp_LDFLAGS = -static
+endif
+
 if USE_TESTS
 noinst_PROGRAMS += tests
 tests_SOURCES = src/tests.c
 tests_CPPFLAGS = -DSECP256K1_BUILD -DVERIFY -I$(top_srcdir)/src -I$(top_srcdir)/include $(SECP_INCLUDES) $(SECP_TEST_INCLUDES)
 tests_LDADD = $(SECP_LIBS) $(SECP_TEST_LIBS) $(COMMON_LIB)
 tests_LDFLAGS = -static
-TESTS = sdc_zkp
+TESTS = tests
 endif
 
 JAVAROOT=src/java

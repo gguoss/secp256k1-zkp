@@ -55,7 +55,7 @@ Build steps
 libsecp256k1 is built using autotools:
 
     $ ./autogen.sh
-    $ ./configure --enable-experimental --enable-module-rangeproof --enable-module-ecdh --enable-openssl-tests
+    $ ./configure --enable-experimental --enable-module-rangeproof --enable-module-ecdh --enable-tests
     $ make
     $ ./tests
     $ sudo make install  # optional
